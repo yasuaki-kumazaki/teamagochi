@@ -4,7 +4,7 @@
 
 Teamagochi is a synchronized always-online pet simulator with multiplayer functionality​ by the RIOT Project SoSe24 team. 
 
-It consists of a [physical device (Node)](./node/), [web backend](./web_backend/) and [web/mobile frontend](./web_backend/).
+It consists of a [physical device (Node)](./node/), [web backend](./web_backend/) and [web/mobile frontend](./frontend/).
 
 ### [Frontend Page](https://smartuni.github.io/teamagochi) [W.I.P]
 
