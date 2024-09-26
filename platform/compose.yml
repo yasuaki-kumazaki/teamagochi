@@ -1,0 +1,39 @@
+#
+# Manages all our services and configures the proxy accordingly.
+#
+
+name: t8i
+
+include:
+  - ./compose.core.yml
+
+services:
+  proxy:
+    extends:
+      file: ./compose.common.yml
+      service: proxy
+    environment:
+      BACKEND_WEB_URL: http://backend:8080/
+    volumes:
+      - "./proxy/includes/backend.include.template:/etc/nginx/templates/backend.include.template:ro"
+    depends_on:
+      keycloak:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    networks:
+      - public
+      - private
+
+  backend:
+    extends:
+      file: ./compose.common.yml
+      service: backend
+    depends_on:
+      postgres:
+        condition: service_healthy
+      keycloak:
+        condition: service_healthy
+    networks:
+      - private
+      - db
